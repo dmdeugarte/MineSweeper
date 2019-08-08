@@ -10,6 +10,14 @@ public class Board
 		arr = new Tile[a][b];
 		r = a;
 		c = b;
+		
+		for(int j = 0; j < r; j++)
+		{
+			for(int k = 0; k < c; k++)
+			{
+				arr[j][k] = new Tile(0, false, false);
+			}
+		}
 	}
 	
 	public void populateField(int n)	//randomly assigns 'n' mines to the array. Designated as 9.
@@ -86,7 +94,12 @@ public class Board
 				if(c.isMarked())
 					System.out.print("x ");
 				else
-					System.out.print(c.getNum() + " ");
+				{
+//					if(c.isSeen())
+						System.out.print(c.getNum() + " ");
+//					else
+//						System.out.print("= ");
+				}
 			}
 			System.out.println();
 		}

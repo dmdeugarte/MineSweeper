@@ -1,2 +1,21 @@
 plz note that @ Board.java:23 a NullPointerException is experienced due to Tile being instantiated via reference.
 All Tiles should be initialized prior to populating the field.
+
+08/08/19 - ALL ABOVE FIXED
+----------------------------------------------------------------------------------------
+Tile:boolean isSeen is in the code, and should be implemented w/in Board's printField. 
+
+Board: reveal(int a, int b) should be added, with a while loop that finds all nearby 0's, opens those, and reveals their surroundings,
+w/ exception to the mines themselves(designated as a 9)
+if reveal(int,int) is used on a mine, the game quits, and reveals the whole board.
+add a count that adds up the number of marked tiles(keep in mind that some could be unmarked again). 
+
+add to Board: setMineStatus(int, int, boolean) to, if the number of marked tiles == the number of mines(add that as a private int), 
+then check to see if all mines are marked. If so, game quits, if not, no.
+
+add to Game - 
+add an open Menu w/ size(add a checker w/in a while loop) and number of mines. 
+This should randomly spit out a location, check to see if it is a '0' Tile, and reveal it
+Then, each 'round', the game will print the board and a new menu(revealTile, markTile, quit), and a tally of unused 'markers'.
+
+
