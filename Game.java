@@ -9,10 +9,10 @@ public class Game
 		game.countMines();
 		
 		game.printField();
+		System.out.println("-----------------");
 		
 		game.setMineStatus(1, 1, true);
 		
 		game.printField();
 	}
-
 }
