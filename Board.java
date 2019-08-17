@@ -77,11 +77,14 @@ public class Board
 		}
 	}
 	
-	public void setMineStatus(int a, int b, boolean k)
+	public void flipMineStatus(int a, int b)
 	{
 		if ((a>=0 && a<r) && (b>=0 && b<c))
 		{
-			arr[a][b].changeStatus(k);
+			if(arr[a][b].isMarked())
+				arr[a][b].changeStatus(false);
+			else
+				arr[a][b].changeStatus(true);
 		}
 	}
 	
@@ -107,3 +110,4 @@ public class Board
 	
 	
 }
+
