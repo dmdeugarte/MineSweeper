@@ -7,15 +7,24 @@ public class Game
 		Scanner scanNum = new Scanner(System.in);
 		Scanner scan = new Scanner(System.in);
 		
-		Board game = new Board(9, 9);
+		printInstructions();
 		
-		game.populateField(15);
+		System.out.println("You can set the game to it's own size!\nFirst dimension?");
+		int size1 = scanNum.nextInt();
+		
+		System.out.println("Second dimension?");
+		int size2 = scanNum.nextInt();
+		
+		Board game = new Board(size1, size2);
+		
+		System.out.println("Number of mines?");
+		int numMines = scanNum.nextInt();
+		
+		game.populateField(numMines);
 		game.countMines();
 		
 		game.printField();
 		System.out.println("-----------------");
-		
-		game.setMineStatus(1, 1, true);
 		
 		game.printField();
 		
@@ -26,7 +35,7 @@ public class Game
 			printMenu();
 			int choice = scanNum.nextInt();
 			
-			System.out.println("Coordinates?");
+			System.out.println("Coordinates?");		//PUT INSIDE SWITCH!
 			String coords = scan.nextLine();
 			
 			int a = Integer.parseInt(coords.substring(0, coords.indexOf("_")));
@@ -36,7 +45,7 @@ public class Game
 			{
 			case 1: //game.revealTile(a, b);
 				break;
-			case 2: game.setMineStatus(a, b, true);
+			case 2: game.flipMineStatus(a, b);
 				break;
 			case 9: //game.quitReveal();
 				break;
