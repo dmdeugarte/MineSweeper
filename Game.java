@@ -26,8 +26,6 @@ public class Game
 		game.printField();
 		System.out.println("-----------------");
 		
-		game.printField();
-		
 		boolean cont = true;
 		while(cont)
 		{
@@ -35,23 +33,38 @@ public class Game
 			printMenu();
 			int choice = scanNum.nextInt();
 			
-			System.out.println("Coordinates?");		//PUT INSIDE SWITCH!
-			String coords = scan.nextLine();
-			
-			int a = Integer.parseInt(coords.substring(0, coords.indexOf("_")));
-			int b = Integer.parseInt(coords.substring(coords.indexOf("_")+1));
+			String coords = new String();
+			int a, b;
 			
 			switch(choice)
 			{
-			case 1: //game.revealTile(a, b);
+			case 1: 
+				System.out.println("Coordinates?");		//PUT INSIDE SWITCH!
+				coords = scan.nextLine();
+				
+				a = Integer.parseInt(coords.substring(0, coords.indexOf("_")));
+				b = Integer.parseInt(coords.substring(coords.indexOf("_")+1));
+				
+				if (game.revealTile(a, b))
+					cont = false;
 				break;
-			case 2: game.flipMineStatus(a, b);
+			case 2: 
+				System.out.println("Coordinates?");		//PUT INSIDE SWITCH!
+				coords = scan.nextLine();
+				
+				a = Integer.parseInt(coords.substring(0, coords.indexOf("_")));
+				b = Integer.parseInt(coords.substring(coords.indexOf("_")+1));
+				
+				game.flipMineStatus(a, b);
 				break;
-			case 9: //game.quitReveal();
+			case 9: 
+				cont = false;
 				break;
 			}
 				
 		}
+		
+		//game.quitReveal();
 	}
 	
 	public static void printMenu()
