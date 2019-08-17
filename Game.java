@@ -22,14 +22,13 @@ public class Game
 		
 		game.populateField(numMines);
 		game.countMines();
-		
-		game.printField();
-		System.out.println("-----------------");
+		game.startGame();
 		
 		boolean cont = true;
 		while(cont)
 		{
 			game.printField();
+			System.out.println("-----------------");
 			printMenu();
 			int choice = scanNum.nextInt();
 			
@@ -39,23 +38,23 @@ public class Game
 			switch(choice)
 			{
 			case 1: 
-				System.out.println("Coordinates?");		//PUT INSIDE SWITCH!
+				System.out.println("Coordinates?");
 				coords = scan.nextLine();
 				
-				a = Integer.parseInt(coords.substring(0, coords.indexOf("_")));
-				b = Integer.parseInt(coords.substring(coords.indexOf("_")+1));
+				a = Integer.parseInt(coords.substring(0, coords.indexOf(" ")));
+				b = Integer.parseInt(coords.substring(coords.indexOf(" ")+1));
 				
-				if (game.revealTile(a, b))
+				if (game.revealTile(a-1, b-1))
 					cont = false;
 				break;
 			case 2: 
-				System.out.println("Coordinates?");		//PUT INSIDE SWITCH!
+				System.out.println("Coordinates?");
 				coords = scan.nextLine();
 				
-				a = Integer.parseInt(coords.substring(0, coords.indexOf("_")));
-				b = Integer.parseInt(coords.substring(coords.indexOf("_")+1));
+				a = Integer.parseInt(coords.substring(0, coords.indexOf(" ")));
+				b = Integer.parseInt(coords.substring(coords.indexOf(" ")+1));
 				
-				game.flipMineStatus(a, b);
+				game.flipMineStatus(a-1, b-1);
 				break;
 			case 9: 
 				cont = false;
@@ -64,7 +63,8 @@ public class Game
 				
 		}
 		
-		//game.quitReveal();
+		game.quitReveal();
+		game.printField();
 	}
 	
 	public static void printMenu()
@@ -77,6 +77,7 @@ public class Game
 	
 	public static void printInstructions()	//separating so, if necessary, I can easily add, change, or remove instructions
 	{
-		System.out.println("Please note:\nWhen inputting coordinates, please input one coord, a space and a second coord.\n ie. 12_6");
+		System.out.println("Please note:\nWhen inputting coordinates, please input one coord, a space and a second coord.\n ie. 12 6");
+		System.out.println("Also: coordinates are row, then column or vertical integer, then horizontal.");
 	}
 }
