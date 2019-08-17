@@ -108,6 +108,11 @@ public class Board
 		}
 	}
 	
-	
+	public boolean revealTile(int a, int b) //will return a boolean value of if a mine was revealed and one should quit the game. 
+	{
+		if (arr[a][b].getNum() == 9)
+			return true;
+		else 
+			return false;
+	}
 }
-
