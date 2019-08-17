@@ -77,11 +77,14 @@ public class Board
 		}
 	}
 	
-	public void setMineStatus(int a, int b, boolean k)
+	public void flipMineStatus(int a, int b)
 	{
 		if ((a>=0 && a<r) && (b>=0 && b<c))
 		{
-			arr[a][b].changeStatus(k);
+			if(arr[a][b].isMarked())
+				arr[a][b].changeStatus(false);
+			else
+				arr[a][b].changeStatus(true);
 		}
 	}
 	
@@ -95,15 +98,52 @@ public class Board
 					System.out.print("x ");
 				else
 				{
-//					if(c.isSeen())
+					if(c.isSeen())
 						System.out.print(c.getNum() + " ");
-//					else
-//						System.out.print("= ");
+					else
+						System.out.print("= ");
 				}
 			}
 			System.out.println();
 		}
 	}
 	
+	public boolean revealTile(int a, int b) //will return a boolean value of if a mine was revealed and one should quit the game. 
+	{
+		if (arr[a][b].getNum() == 9)
+			return true;
+		else 
+		{
+			arr[a][b].setSeen();
+			return false;
+		}
+	}
 	
+	public void startGame()
+	{
+		boolean cont = true;
+		
+		while(cont)
+		{
+			int a = (int)(Math.random()*r);
+			int b = (int)(Math.random()*c);
+			
+			if(arr[a][b].getNum() == 0)
+			{
+				arr[a][b].setSeen();
+				cont = false;
+			}
+		}
+	}
+	
+	public void quitReveal()
+	{
+		for(int j = 0; j < r; j++)
+		{
+			for(int k = 0; k < c; k++)
+			{
+				arr[j][k].setSeen();
+			}
+		}
+	}
 }
