@@ -18,4 +18,15 @@ add an open Menu w/ size(add a checker w/in a while loop) and number of mines.
 This should randomly spit out a location, check to see if it is a '0' Tile, and reveal it
 Then, each 'round', the game will print the board and a new menu(revealTile, markTile, quit), and a tally of unused 'markers'.
 
+----------------------------------------------------------------------------------------
+2020.12.13
+ - None of the above is added
+ - Created a new txt doc for update logs
+----------------------------------------------------------------------------------------
+The reveal idea should be recursive. Start with a tile that reads 0. Check tile Northwest and move right-to-left, top-to-bottom. Check for existence first, then check for number. If the number is 0, begin the recursive process again. Otherwise, if it is not a 9, call setSeen on that tile and retreat. 
+
+I will rewrite most of this to have and array of JavaButtons and Listeners. The buttons will represent the Tile information. If visible, show the num value. Otherwise, show the isMarked value. A marked value should be... Well, use the current printField method in Board.java to show this. An x is marked, and = is unmarked. 
+
+This buttons thing will also have a couple of text fields and possible a popup menu to change the settings of the game.
+
 
