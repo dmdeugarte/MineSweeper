@@ -1,0 +1,23 @@
+--------------------------------------------------
+YYYY.MM.DD - Update Name
+--------------------------------------------------
+FIXED:
+ - 
+ADDED:
+ - This document is now added as a log for all updates to this project
+CHANGED:
+ -
+ 
+--------------------------------------------------
+2020.12.13 - Javadoc Comments Update
+--------------------------------------------------
+FIXED:
+ - Readability of Tile and Board with new javadoc comments
+ADDED:
+ - See above
+CHANGED:
+ - See above
+ 
+ --------------------------------------------------
+ 
+ --------------------------------------------------

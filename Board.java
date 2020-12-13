@@ -20,6 +20,10 @@ public class Board
 		}
 	}
 	
+	/**
+	 * Randomly populates a game field with mines.
+	 * @param n the number of mines to be populated
+	 */
 	public void populateField(int n)	//randomly assigns 'n' mines to the array. Designated as 9.
 	{
 		int i = 0;
@@ -37,6 +41,9 @@ public class Board
 		}
 	}
 	
+	/**
+	 * Assigns values to tiles that are not mines based on the number of mines in their peripherals. 
+	 */
 	public void countMines()
 	{
 		for(int j = 0; j < r; j++)
@@ -77,6 +84,11 @@ public class Board
 		}
 	}
 	
+	/**
+	 * Flips the mine status at a coordinate from marked to not marked.
+	 * @param a the row value
+	 * @param b the column value
+	 */
 	public void flipMineStatus(int a, int b)
 	{
 		if ((a>=0 && a<r) && (b>=0 && b<c))
@@ -88,6 +100,9 @@ public class Board
 		}
 	}
 	
+	/**
+	 * Prints the game field to the console with proper markings. 
+	 */
 	public void printField()
 	{
 		for(Tile[] r: arr)
@@ -108,6 +123,13 @@ public class Board
 		}
 	}
 	
+	/**
+	 * Changes the isSeen value of a tile. Determines if a game is lost. 
+	 * @param a The row value of the coordinate
+	 * @param b The column value of the coordinate
+	 * @return true if a mine was revealed
+	 * 		   false is a regular tile was revealed
+	 */
 	public boolean revealTile(int a, int b) //will return a boolean value of if a mine was revealed and one should quit the game. 
 	{
 		if (arr[a][b].getNum() == 9)
@@ -119,6 +141,9 @@ public class Board
 		}
 	}
 	
+	/**
+	 * Starts a game by revealing a random tile with no mines near it.
+	 */
 	public void startGame()
 	{
 		boolean cont = true;
@@ -136,6 +161,9 @@ public class Board
 		}
 	}
 	
+	/**
+	 * Ends a game by revealing every tile.
+	 */
 	public void quitReveal()
 	{
 		for(int j = 0; j < r; j++)
