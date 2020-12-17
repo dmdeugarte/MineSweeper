@@ -18,6 +18,19 @@ ADDED:
 CHANGED:
  - See above
  
- --------------------------------------------------
- 
- --------------------------------------------------
+--------------------------------------------------
+2020.12.17 - Board Buttons Update
+--------------------------------------------------
+FIXED:
+ - NULL
+ADDED: 
+ - BoardTest.java created and pushed to new branch.
+   - Essentially creates a board of buttons that can be pushed for various results
+CHANGED
+ - NULL: 
+PLANNED:
+ - Finish BoardTest.java. Merge with Board.java, when it becomes obsolete.
+
+--------------------------------------------------
+
+--------------------------------------------------

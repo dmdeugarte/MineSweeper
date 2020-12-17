@@ -29,4 +29,14 @@ I will rewrite most of this to have and array of JavaButtons and Listeners. The 
 
 This buttons thing will also have a couple of text fields and possible a popup menu to change the settings of the game.
 
+----------------------------------------------------------------------------------------
+2020.12.17
+ - BoardTest.java created for testing of Button array
+----------------------------------------------------------------------------------------
+Potentially, I will need both the Button's 1D array and the tileArray's 2D array. The 2D will be used to figure out what to clear when you reveal a tile, plus is required for cataloguing the numbers for each Tile. Then, that will be used by the array of buttons for their text. I've created a couple methods that will turn a number into the 1D number and back to the set of 2D positions for that purpose. 
+
+I will need to test if having everything static or not will change anything. I doubt it, so I will leave it for now, but I should test later. Static is supposed to make things a tad more efficient. 
+
+I will need to create new, recursive revealTile method eventually. That will be once the BoardTest.java catches up to the abilities of the actual Board.java. I can test it now, but I will wait. 
+
 
