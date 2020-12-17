@@ -29,7 +29,7 @@ ADDED:
 CHANGED
  - NULL: 
 PLANNED:
- - Finish BoardTest.java with ActionListeners and when text boxes update. Merge with Board.java, when it becomes obsolete.
+ - Finish BoardTest.java. Merge with Board.java, when it becomes obsolete.
 
 --------------------------------------------------
 
