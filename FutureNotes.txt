@@ -39,4 +39,18 @@ I will need to test if having everything static or not will change anything. I d
 
 I will need to create new, recursive revealTile method eventually. That will be once the BoardTest.java catches up to the abilities of the actual Board.java. I can test it now, but I will wait. 
 
+----------------------------------------------------------------------------------------
+2020.12.18
+----------------------------------------------------------------------------------------
+Possible Bugs: 
+- Not enough mines generated. Needs further investigating. Possibly fixed.
+
+To Implement:
+- JTextFields in northPanel need functionality
+- Hotkey required for toggling markOrReveal JButton. Frustrating to go back and forth from it.
+- Recursive revealTile should be written and implemented.
+- Merge BoardTest with Board. Delete all .java files except Tile and newly merged Board.
+- Make icons for each button. Flag, hidden and revealed mine.
+- Possible change quitReveal to only reveal flagged or hidden mines and not reveal all tiles?
+
 
