@@ -32,5 +32,20 @@ PLANNED:
  - Finish BoardTest.java. Merge with Board.java, when it becomes obsolete.
 
 --------------------------------------------------
+2020.12.18 - Board Buttons Complete
+--------------------------------------------------
+FIXED:
+- Error generating less than required number of mines for BoardTest
+- Error in JButton array showing correct Tile num value. Now shows correct value or character.
+ADDED:
+- BoardTest now works as Board does. Will merge in next update after further testing
+CHANGED:
+- Many methods of Board not used or not powerful enough. Each changed or erased accordingly.
+PLANNED:
+- Further testing of BoardTest reqd. Bugs above might not be fixed entirely, but are just unlikely.
+- Merging of BoardTest with board afterwards and deletion of Game.java along with it.
+- Implementation of recursive revealTile function. 
+
+--------------------------------------------------
 
 --------------------------------------------------
