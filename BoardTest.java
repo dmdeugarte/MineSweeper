@@ -9,16 +9,16 @@ import java.lang.Math;
 
 public class BoardTest extends JFrame //implements ActionListener
 {
-    public static final char HIDDEN = '=';
+    public static final char HIDDEN = ' ';
     public static final char MARKED = 'X';
     
     private static int boardHeight;
     private static int boardLength;
     private int boardMines;
     
-    private static JButton buttons[]; // IF BUTTONS HAS ISSUE, Check the static thing.
-    private static JButton markOrReveal;
-    private static Tile tileArray[][];
+    private static JButton    buttons[]; // IF BUTTONS HAS ISSUE, Check the static thing.
+    private static JButton    markOrReveal;
+    private static Tile       tileArray[][];
     private static JTextField heightTF = new JTextField(20);
     private static JTextField lengthTF = new JTextField(20);
     private static JTextField numMinesTF = new JTextField(20);
@@ -126,7 +126,6 @@ public class BoardTest extends JFrame //implements ActionListener
                         }
                         else if (!markMode && buttons[tileNum].getText().equals("" + HIDDEN))
                         {
-                            buttons[tileNum].setText("" + tileArray[x][y].getNum());
                             if (revealTile(x, y))
                                 quitReveal();
                         }
@@ -146,7 +145,7 @@ public class BoardTest extends JFrame //implements ActionListener
             int a = (int)(Math.random()*boardHeight);
             int b = (int)(Math.random()*boardLength);
             
-            if(tileArray[a][b].getNum() != 9)
+            if(tileArray[a][b].getNumMines() != 9)
             {
                 tileArray[a][b].setNum(9);
                 i++;
@@ -163,33 +162,9 @@ public class BoardTest extends JFrame //implements ActionListener
         {
             for(int k = 0; k < boardLength; k++)
             {
-                if (tileArray[j][k].getNum() != 9)
+                if (tileArray[j][k].getNumMines() != 9)
                 {
-                    int count = 0;
-                    
-                    if((j-1 >= 0 && k-1 >= 0) && tileArray[j-1][k-1].getNum() == 9)
-                        count++;
-                    
-                    if((k-1 >= 0) && tileArray[j][k-1].getNum() == 9)
-                        count++;
-                
-                    if((j+1 < boardHeight && k-1 >= 0) && tileArray[j+1][k-1].getNum() == 9)
-                        count++;
-                
-                    if((j-1 >= 0) && tileArray[j-1][k].getNum() == 9)
-                        count++;
-                
-                    if((j+1 < boardHeight) && tileArray[j+1][k].getNum() == 9)
-                        count++;
-                
-                    if((j-1 >= 0 && k+1 < boardLength) && tileArray[j-1][k+1].getNum() == 9)
-                        count++;
-                
-                    if((k+1 < boardLength) && tileArray[j][k+1].getNum() == 9)
-                        count++;
-                
-                    if((j+1 < boardHeight && k+1 < boardLength) && tileArray[j+1][k+1].getNum() == 9)
-                        count++;
+                    int count = countTilePeripherals(j, k, true);
                     
                     tileArray[j][k].setNum(count);
                 }
@@ -198,21 +173,101 @@ public class BoardTest extends JFrame //implements ActionListener
     }
     
     /**
+     * Checks a valid Tile from the tileArray and updates the Tile's numFlags and numMines
+     * @param x The x coord of the Tile from the tileArray
+     * @param y The x coord of the Tile from the tileArray
+     * @param forMine Whether the count is for the number of mines or flags in peripheral.
+     * @return 
+     */
+    public static int countTilePeripherals(int x, int y, boolean forMine)
+    {
+        if(x >= 0 && x < boardLength && y >= 0 && y < boardHeight)
+        {
+            int count = 0;
+            
+            if(x-1 >= 0 && y-1 >= 0)
+                count += quickCount(x-1, y-1, forMine);
+            
+            if(y-1 >= 0)
+                count += quickCount(x, y-1, forMine);
+            
+            if(x+1 < boardHeight && y-1 >= 0)
+                count += quickCount(x+1, y-1, forMine);
+        
+            if(x-1 >= 0)
+                count += quickCount(x-1, y, forMine);
+        
+            if(x+1 < boardHeight)
+                count += quickCount(x+1, y, forMine);
+        
+            if(x-1 >= 0 && y+1 < boardLength)
+                count += quickCount(x-1, y+1, forMine);
+        
+            if(y+1 < boardLength)
+                count += quickCount(x, y+1, forMine);
+        
+            if(x+1 < boardHeight && y+1 < boardLength)
+                count += quickCount(x+1, y+1, forMine);
+            
+            return count;
+        }
+        
+        return -1;
+    }
+    
+    /**
+     * Assists countMinePeripherals with the forMine boolean. Shortens code.
+     * @param x The x coord of the Tile from the tileArray
+     * @param y The x coord of the Tile from the tileArray
+     * @param forMine Whether the count is for the number of mines or flags in peripheral.
+     * @return 1 for the tile is a mine or the tile is flagged(depends on tag), 0 otherwise.
+     */
+    public static int quickCount(int x, int y, boolean forMine)
+    {
+        if(forMine && tileArray[x][y].getNumMines() == 9)
+            return 1;
+        
+        if (!forMine && tileArray[x][y].isMarked())
+            return 1;
+        
+        return 0;
+    }
+    
+    /**
      * Changes the isSeen value of a tile. Determines if a game is lost. 
-     * @param a The row value of the coordinate
-     * @param b The column value of the coordinate
+     * @param x The row value of the coordinate
+     * @param y The column value of the coordinate
+     * @param cont a boolean used to tell revealTile to recursively check for more values
      * @return true if a mine was revealed
      *         false is a regular tile was revealed
      */
-    public static boolean revealTile(int a, int b) //will return a boolean value of if a mine was revealed and one should quit the game. 
+    public static boolean revealTile(int x, int y) //will return a boolean value of if a mine was revealed and one should quit the game. 
     {
-        if (tileArray[a][b].getNum() == 9)
-            return true;
-        else 
+        if(x >= 0 && x < boardLength && y >= 0 && y < boardHeight)
         {
-            tileArray[a][b].setSeen();
-            return false;
+            if (tileArray[x][y].getNumMines() == 9)
+                return true;
+            else if (!tileArray[x][y].isSeen())
+            {
+                tileArray[x][y].setSeen();
+                buttons[posFrom2D(x, y)].setText("" + tileArray[x][y].getNumMines());
+                    
+                if (tileArray[x][y].getNumMines() == 0 || countTilePeripherals(x,y,false) == tileArray[x][y].getNumMines())
+                {
+                    revealTile(x-1, y-1);
+                    revealTile(x, y-1);
+                    revealTile(x+1, y-1);
+                    revealTile(x-1, y);
+                    revealTile(x+1, y);
+                    revealTile(x-1, y+1);
+                    revealTile(x, y+1);
+                    revealTile(x+1, y+1);
+                }
+                
+                return false;
+            }
         }
+        return false;
     }
     
     /**
@@ -225,7 +280,7 @@ public class BoardTest extends JFrame //implements ActionListener
             for(int k = 0; k < boardLength; k++)
             {
                 tileArray[j][k].setSeen();
-                buttons[posFrom2D(j,k)].setText("" + tileArray[j][k].getNum());
+                buttons[posFrom2D(j,k)].setText("" + tileArray[j][k].getNumMines());
             }
         }
     }
@@ -242,10 +297,9 @@ public class BoardTest extends JFrame //implements ActionListener
             int a = (int)(Math.random()*boardHeight);
             int b = (int)(Math.random()*boardLength);
             
-            if(tileArray[a][b].getNum() == 0)
+            if(tileArray[a][b].getNumMines() == 0)
             {
-                tileArray[a][b].setSeen();
-                buttons[posFrom2D(a,b)].setText("" + tileArray[a][b].getNum());
+                revealTile(a, b);
                 cont = false;
             }
         }
