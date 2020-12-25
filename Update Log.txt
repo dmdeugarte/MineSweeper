@@ -64,5 +64,17 @@ PLANNED:
 - Clean up current code to allow readability into the future.
 
 --------------------------------------------------
+2020.12.24 - Quick Color Update
+--------------------------------------------------
+FIXED:
+- NULL
+ADDED:
+- COLOR! The buttons now have color for better viewing.
+CHANGED: 
+- See above.
+PLANNED:
+- Not changed since last
+
+--------------------------------------------------
 
 --------------------------------------------------

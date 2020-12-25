@@ -61,6 +61,7 @@ public class BoardTest extends JFrame //implements ActionListener
             buttonPanel.add(buttons[index]);
             
             buttons[index].addActionListener(tileClickedListener(index));
+            buttons[index].setBackground(Color.LIGHT_GRAY);
         }
         
         markOrReveal = new JButton("REVEALING");
@@ -116,11 +117,13 @@ public class BoardTest extends JFrame //implements ActionListener
                             if (buttons[tileNum].getText().equals("" + HIDDEN))
                             {
                                 buttons[tileNum].setText("" + MARKED);
+                                buttons[tileNum].setBackground(new Color(255, 153, 153));
                                 tileArray[x][y].changeStatus(true);
                             }
                             else if (buttons[tileNum].getText().equals("" + MARKED))
                             {
                                 buttons[tileNum].setText("" + HIDDEN);
+                                buttons[tileNum].setBackground(Color.LIGHT_GRAY);
                                 tileArray[x][y].changeStatus(false);
                             }
                         }
@@ -251,6 +254,7 @@ public class BoardTest extends JFrame //implements ActionListener
             {
                 tileArray[x][y].setSeen();
                 buttons[posFrom2D(x, y)].setText("" + tileArray[x][y].getNumMines());
+                buttons[posFrom2D(x, y)].setBackground(new Color(153, 204, 255));
                     
                 if (tileArray[x][y].getNumMines() == 0 || countTilePeripherals(x,y,false) == tileArray[x][y].getNumMines())
                 {
@@ -281,6 +285,15 @@ public class BoardTest extends JFrame //implements ActionListener
             {
                 tileArray[j][k].setSeen();
                 buttons[posFrom2D(j,k)].setText("" + tileArray[j][k].getNumMines());
+                if(!tileArray[j][k].isMarked() && tileArray[j][k].getNumMines() == 9)
+                {
+                    buttons[posFrom2D(j,k)].setBackground(Color.RED);
+                }
+                else if (tileArray[j][k].isMarked() && tileArray[j][k].getNumMines() != 9)
+                {
+                    buttons[posFrom2D(j,k)].setBackground(new Color(255, 153, 204));
+                }
+                    
             }
         }
     }
