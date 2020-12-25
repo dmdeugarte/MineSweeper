@@ -53,4 +53,17 @@ To Implement:
 - Make icons for each button. Flag, hidden and revealed mine.
 - Possible change quitReveal to only reveal flagged or hidden mines and not reveal all tiles?
 
+----------------------------------------------------------------------------------------
+2020.12.24
+----------------------------------------------------------------------------------------
+Definite Bug: 
+- Error in number of mines generated. 16 mines have been generated in this update's testing. Needs fixing.
+
+Recursive revealTile has been implemented. Needs testing for possible bugs, but not likely.
+
+To Implement:
+- Win screen! 
+- Change colors on button array until icons implemented.
+- Possibly RClick v LClick for flag and reveal, respectively?
+
 
