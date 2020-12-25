@@ -1,26 +1,26 @@
 import java.lang.Math;
 public class Board 
 {
-	private Tile[][] arr;
-	private int r;
-	private int c;
-	
-	public Board(int a, int b)
-	{
-		arr = new Tile[a][b];
-		r = a;
-		c = b;
-		
-		for(int j = 0; j < r; j++)
-		{
-			for(int k = 0; k < c; k++)
-			{
-				arr[j][k] = new Tile(0, false, false);
-			}
-		}
-	}
-	
-	/**
+    private Tile[][] arr;
+    private int r;
+    private int c;
+    
+    public Board(int a, int b)
+    {
+        arr = new Tile[a][b];
+        r = a;
+        c = b;
+        
+        for(int j = 0; j < r; j++)
+        {
+            for(int k = 0; k < c; k++)
+            {
+                arr[j][k] = new Tile(0, false, false);
+            }
+        }
+    }
+    
+    /**
 	 * Randomly populates a game field with mines.
 	 * @param n the number of mines to be populated
 	 */
@@ -32,7 +32,7 @@ public class Board
 			int a = (int)(Math.random()*r);
 			int b = (int)(Math.random()*c);
 			
-			if(arr[a][b].getNum() != 9)
+			if(arr[a][b].getNumMines() != 9)
 			{
 				arr[a][b].setNum(9);
 				i++;
@@ -50,32 +50,32 @@ public class Board
 		{
 			for(int k = 0; k < c; k++)
 			{
-				if (arr[j][k].getNum() != 9)
+				if (arr[j][k].getNumMines() != 9)
 				{
 					int count = 0;
 					
-					if((j-1 >= 0 && k-1 >= 0) && arr[j-1][k-1].getNum() == 9)
+					if((j-1 >= 0 && k-1 >= 0) && arr[j-1][k-1].getNumMines() == 9)
 						count++;
 					
-					if((k-1 >= 0) && arr[j][k-1].getNum() == 9)
+					if((k-1 >= 0) && arr[j][k-1].getNumMines() == 9)
 						count++;
 				
-					if((j+1 < r && k-1 >= 0) && arr[j+1][k-1].getNum() == 9)
+					if((j+1 < r && k-1 >= 0) && arr[j+1][k-1].getNumMines() == 9)
 						count++;
 				
-					if((j-1 >= 0) && arr[j-1][k].getNum() == 9)
+					if((j-1 >= 0) && arr[j-1][k].getNumMines() == 9)
 						count++;
 				
-					if((j+1 < r) && arr[j+1][k].getNum() == 9)
+					if((j+1 < r) && arr[j+1][k].getNumMines() == 9)
 						count++;
 				
-					if((j-1 >= 0 && k+1 < c) && arr[j-1][k+1].getNum() == 9)
+					if((j-1 >= 0 && k+1 < c) && arr[j-1][k+1].getNumMines() == 9)
 						count++;
 				
-					if((k+1 < c) && arr[j][k+1].getNum() == 9)
+					if((k+1 < c) && arr[j][k+1].getNumMines() == 9)
 						count++;
 				
-					if((j+1 < r && k+1 < c) && arr[j+1][k+1].getNum() == 9)
+					if((j+1 < r && k+1 < c) && arr[j+1][k+1].getNumMines() == 9)
 						count++;
 					
 					arr[j][k].setNum(count);
@@ -114,7 +114,7 @@ public class Board
 				else
 				{
 					if(c.isSeen())
-						System.out.print(c.getNum() + " ");
+						System.out.print(c.getNumMines() + " ");
 					else
 						System.out.print("= ");
 				}
@@ -132,7 +132,7 @@ public class Board
 	 */
 	public boolean revealTile(int a, int b) //will return a boolean value of if a mine was revealed and one should quit the game. 
 	{
-		if (arr[a][b].getNum() == 9)
+		if (arr[a][b].getNumMines() == 9)
 			return true;
 		else 
 		{
@@ -153,7 +153,7 @@ public class Board
 			int a = (int)(Math.random()*r);
 			int b = (int)(Math.random()*c);
 			
-			if(arr[a][b].getNum() == 0)
+			if(arr[a][b].getNumMines() == 0)
 			{
 				arr[a][b].setSeen();
 				cont = false;

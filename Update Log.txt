@@ -47,5 +47,22 @@ PLANNED:
 - Implementation of recursive revealTile function. 
 
 --------------------------------------------------
+2020.12.24 - Recursive Update
+--------------------------------------------------
+FIXED: 
+- NULL
+ADDED:
+- revealTile now works recursively and reveals more
+CHANGED:
+- Tile.java has had minor rennaming and rearranging of methods and variables
+- Board.java has similar changes to accomadate the above.
+- BoardTest.java has multiple changes to allow recursive revealTile method while reusing code.
+PLANNED:
+- Quick change on the buttons' colors for easier viewing. Numbers too small.
+- See FutureLog for more info
+- Board.java is likely redundant. Review and delete if possible. 
+- Clean up current code to allow readability into the future.
+
+--------------------------------------------------
 
 --------------------------------------------------

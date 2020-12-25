@@ -1,33 +1,30 @@
 
 public class Tile 
 {
-	private int num;
+	private int numMines;
 	private boolean isMarked;
 	private boolean isSeen;
 	
-	public Tile(int inNum, boolean inBool, boolean inSeen)
-	{
-		num = inNum;
-		isMarked = inBool;
-		isSeen = inSeen;
-	}
-	
 	/**
-	 * Changes the isMarked value to the parameter provided
-	 * @param k a boolean to change the isMarked value to
+	 * Tile Constructor. Requires number of mines, if marked, if seen.
+	 * @param inNum The number of mines the tile has.
+	 * @param inMark The boolean value of if the tile is marked.
+	 * @param inSeen The boolean value of if the tile is seen.
 	 */
-	public void changeStatus(boolean k)
+	public Tile(int inNum, boolean inMark, boolean inSeen)
 	{
-		isMarked = k;
+	    numMines = inNum;
+		isMarked = inMark;
+		isSeen   = inSeen;
 	}
 	
 	/**
 	 * Returns the number value of the tile 0-9
 	 * @return the number value of the tile
 	 */
-	public int getNum()
+	public int getNumMines()
 	{
-		return num;
+		return numMines;
 	}
 	
 	/**
@@ -40,21 +37,30 @@ public class Tile
 	}
 	
 	/**
+     * Returns the isSeen value of the tile
+     * @return returns the isSeen value of the tile. True for is visible and false for not visible
+     */
+    public boolean isSeen()
+    {
+        return isSeen;
+    }
+    
+    /**
+     * Changes the isMarked value to the parameter provided
+     * @param k a boolean to change the isMarked value to
+     */
+    public void changeStatus(boolean k)
+    {
+        isMarked = k;
+    }
+	
+	/**
 	 * Changes the number value of the tile.
 	 * @param n the number value to change the tile to
 	 */
 	public void setNum(int n)
 	{
-		num = n;
-	}
-	
-	/**
-	 * Returns the isSeen value of the tile
-	 * @return returns the isSeen value of the tile. True for is visible and false for not visible
-	 */
-	public boolean isSeen()
-	{
-		return isSeen;
+	    numMines = n;
 	}
 	
 	/**
